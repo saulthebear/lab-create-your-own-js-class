@@ -24,6 +24,10 @@ class BankAccount {
       )
     }
   }
+
+  get netBalance() {
+    return this.balance - this.overdraft
+  }
 }
 
 class ChildBankAccount extends BankAccount {
@@ -44,10 +48,12 @@ class ChildBankAccount extends BankAccount {
 const stefanAccount = new BankAccount("Stefan", "checking")
 stefanAccount.deposit(999)
 stefanAccount.withdraw(1000)
+stefanAccount.withdraw(10)
 stefanAccount.deposit(5000)
 stefanAccount.withdraw(2000)
 console.log(stefanAccount.balance)
 console.log(stefanAccount.overdraft)
+console.log(stefanAccount.netBalance)
 
 const childAccount = new ChildBankAccount("Bodhi")
 childAccount.deposit(10)
