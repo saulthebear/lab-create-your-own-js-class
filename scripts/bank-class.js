@@ -19,7 +19,9 @@ class BankAccount {
 
     if (amount > this.balance) {
       this.overdraft += 20
-      console.log("Overdraft fee")
+      console.log(
+        `You're too poor, ${this.name}. An overdraft fee has been issued`
+      )
     }
   }
 }
@@ -31,7 +33,7 @@ class ChildBankAccount extends BankAccount {
 
   withdraw(amount) {
     if (amount > this.balance) {
-      console.log("Careful! You don't have enough money")
+      console.log(`Careful, ${this.name}! You don't have enough money`)
     } else {
       this.balance -= amount
       BankAccount.bankVault -= amount
@@ -42,6 +44,7 @@ class ChildBankAccount extends BankAccount {
 const stefanAccount = new BankAccount("Stefan", "checking")
 stefanAccount.deposit(999)
 stefanAccount.withdraw(1000)
+stefanAccount.deposit(5000)
 stefanAccount.withdraw(2000)
 console.log(stefanAccount.balance)
 console.log(stefanAccount.overdraft)
