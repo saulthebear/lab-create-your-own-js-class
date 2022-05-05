@@ -1,5 +1,5 @@
 class BankAccount {
-  static newWorth = 0
+  static bankVault = 0
 
   constructor(name, type) {
     this.name = name
@@ -10,12 +10,12 @@ class BankAccount {
 
   deposit(amount) {
     this.balance += amount
-    BankAccount.newWorth += amount
+    BankAccount.bankVault += amount
   }
 
   withdraw(amount) {
     this.balance -= amount
-    BankAccount.newWorth -= amount
+    BankAccount.bankVault -= amount
 
     if (amount > this.balance) {
       this.overdraft += 20
@@ -34,19 +34,19 @@ class ChildBankAccount extends BankAccount {
       console.log("Careful! You don't have enough money")
     } else {
       this.balance -= amount
-      BankAccount.newWorth -= amount
+      BankAccount.bankVault -= amount
     }
   }
 }
 
-const grace = new BankAccount("Grace", "checking")
-grace.deposit(999)
-grace.withdraw(1000)
-grace.withdraw(2000)
-console.log(grace.balance)
-console.log(grace.overdraft)
+const stefanAccount = new BankAccount("Stefan", "checking")
+stefanAccount.deposit(999)
+stefanAccount.withdraw(1000)
+stefanAccount.withdraw(2000)
+console.log(stefanAccount.balance)
+console.log(stefanAccount.overdraft)
 
-const child = new ChildBankAccount("Bodhi")
-child.deposit(10)
-child.withdraw(100)
-console.dir(child)
+const childAccount = new ChildBankAccount("Bodhi")
+childAccount.deposit(10)
+childAccount.withdraw(100)
+console.dir(childAccount)
